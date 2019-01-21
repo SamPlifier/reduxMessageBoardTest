@@ -8,6 +8,10 @@ export const BUSY = `BUSY`;
 export const OFFLINE = `OFFLINE`;
 export const UPDATE_STATUS = `UPDATE_STATUS`;
 
+export const READY = `READY`;
+export const WAITING = `WAITING`;
+export const NEW_MESSAGE_SERVER_ACCEPTED = `NEW_MESSAGE_SERVER_ACCEPTED`;
+
 export const CREATE_NEW_MESSAGE = `CREATE_NEW_MESSAGE`;
 
 const defaultState = {
@@ -28,9 +32,21 @@ const defaultState = {
         postedBy: 'Cartman',
         content: `Screw you guys, I'm going home.`
     }],
-    userStatus: `ONLINE`
+    userStatus: `ONLINE`,
+    apiCommunicationStatus: READY
 }
 
+const apiCommunicationsReducer = (state = READY, {type}) => {
+    switch (type) {
+        case CREATE_NEW_MESSAGE:
+            return WAITING;
+            break;
+        case NEW_MESSAGE_SERVER_ACCEPTED:
+            return READY;
+            break;
+    }
+    return state;
+}
 
 const userStatusReducer = (state = defaultState.userStatus, {type, value}) => {
     switch (type) {
@@ -50,7 +66,8 @@ const messageReducer = (state = defaultState.messages, {type, value, postedBy, d
 }
 const combinedReducer = combineReducers({
     userStatus: userStatusReducer,
-    messages: messageReducer
+    messages: messageReducer,
+    apiCommunicationStatus: apiCommunicationsReducer
 });
 
 const store = createStore(
@@ -80,6 +97,11 @@ const statusUpdateAction = (value) => {
 }
 const newMessageAction = (content, postedBy) => {
     const date = new Date();
+    get('/api/create', (id) => {
+        store.dispatch({
+            type: NEW_MESSAGE_SERVER_ACCEPTED
+        })
+    })
     return {
         type: CREATE_NEW_MESSAGE,
         value: content,
