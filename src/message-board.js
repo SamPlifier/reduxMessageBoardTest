@@ -78,7 +78,8 @@ const store = createStore(
 const render = () => {
     const {
         messages,
-        userStatus
+        userStatus,
+        apiCommunicationStatus
     } = store.getState();
     document.getElementById('messages').innerHTML = messages
         .sort((a, b) => b.date - a.date)
@@ -87,6 +88,7 @@ const render = () => {
         `)).join('');
     document.forms.newMessage.fields.disabled = (userStatus === OFFLINE);
     document.forms.newMessage.value = '';
+    document.forms.newMessage.fields.disabled = (userStatus === OFFLINE || apiCommunicationStatus ===  WAITING);
 };
 
 const statusUpdateAction = (value) => {
