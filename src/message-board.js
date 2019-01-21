@@ -44,6 +44,7 @@ const messageReducer = (state = defaultState.messages, {type, value, postedBy, d
             const newState = [{date, postedBy, content:value},...state];//arrays = mutable, make copy instead of altering original
             return newState;
     }
+    return state;
 }
 const combinedReducer = combineReducers({
     userStatus: userStatusReducer,
@@ -63,6 +64,7 @@ const render = () => {
         <div>${message.postedBy} : ${message.content}</div>
         `)).join('');
     document.forms.newMessage.fields.disabled = (userStatus === OFFLINE);
+    document.forms.newMessage.value = '';
 };
 
 const statusUpdateAction = (value) => {
@@ -83,6 +85,12 @@ const newMessageAction = (content, postedBy) => {
 
 document.forms.selectStatus.addEventListener('change', (e) => {
     store.dispatch(statusUpdateAction(e.target.value));
+});
+document.forms.newMessage.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const value = e.target.newMessage.value;
+    const username = localStorage['preferences'] ? JSON.parse(localStorage['preferences']).userName : 'Rando';
+    store.dispatch(newMessageAction(value, username));
 });
 
 render();
