@@ -1,4 +1,6 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import { get } from './http';
+import {createLogger} from 'redux-logger';
 
 export const ONLINE = `ONLINE`;
 export const AWAY = `AWAY`;
@@ -51,7 +53,10 @@ const combinedReducer = combineReducers({
     messages: messageReducer
 });
 
-const store = createStore(combinedReducer);
+const store = createStore(
+    combinedReducer, 
+    applyMiddleware(createLogger())
+);
 
 const render = () => {
     const {
@@ -96,3 +101,7 @@ document.forms.newMessage.addEventListener('submit', (e) => {
 render();
 
 store.subscribe(render);
+console.log('Making request');
+get('http://pluralsight.com', (id) => {
+    console.log('received callback', id);
+})
