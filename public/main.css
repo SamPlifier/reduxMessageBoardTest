@@ -4,3 +4,13 @@ body {
 section, input, button {
     margin-bottom: 0.6em;
 }
+.superHeroes {
+    width: 100%;
+    margin: -70px 0 -60px 0;
+}
+.msgTime {
+    color: #0000007a;
+}
+.msgAuthor {
+    border-bottom: 1px solid grey;
+}

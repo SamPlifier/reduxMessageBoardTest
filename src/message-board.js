@@ -17,20 +17,20 @@ export const CREATE_NEW_MESSAGE = `CREATE_NEW_MESSAGE`;
 const defaultState = {
     messages: [{
         date: new Date('2019-1-20 10:00:00'),
-        postedBy: 'Stan',
-        content: `Omg they killed kenny!`
+        postedBy: 'Professor Chaos',
+        content: `Myself, General Disarray, and my minions will be plunge the world into darkness!`
     }, {
         date: new Date('2019-1-20 10:01:00'),
-        postedBy: 'Kyle',
-        content: `You bastards!`
+        postedBy: 'The Human Kite',
+        content: `Not if my laser eyes light you up...`
     }, {
         date: new Date('2019-1-20 10:02:00'),
-        postedBy: 'Kenny',
-        content: `No, I'm ok...`
+        postedBy: 'Tool Shed',
+        content: `Chaos, aren't you grounded this week?`
     }, {
         date: new Date('2019-1-20 10:04:00'),
-        postedBy: 'Cartman',
-        content: `Screw you guys, I'm going home.`
+        postedBy: 'Mintberry Crunch',
+        content: `I'll cool Chaos' plans with the power of minty berries and a satisfying crunch!`
     }],
     userStatus: `ONLINE`,
     apiCommunicationStatus: READY
@@ -81,14 +81,15 @@ const render = () => {
         userStatus,
         apiCommunicationStatus
     } = store.getState();
+
     document.getElementById('messages').innerHTML = messages
-        .sort((a, b) => b.date - a.date)
+        .sort((a, b) => a.date - b.date)
         .map(message => (`
-        <div>${message.postedBy} : ${message.content}</div>
+        <div><span class="msgAuthor">${message.postedBy}</span>: ${message.content} <span class="msgTime">${message.date.toLocaleTimeString()}</span></div>
         `)).join('');
     document.forms.newMessage.fields.disabled = (userStatus === OFFLINE);
-    document.forms.newMessage.value = '';
-    document.forms.newMessage.fields.disabled = (userStatus === OFFLINE || apiCommunicationStatus ===  WAITING);
+    // document.forms.newMessage.fields.disabled = (userStatus === OFFLINE || apiCommunicationStatus ===  WAITING);
+    document.forms.newMessage.newMessage.value = ''
 };
 
 const statusUpdateAction = (value) => {
@@ -110,6 +111,28 @@ const newMessageAction = (content, postedBy) => {
         postedBy,
         date
     }
+}
+const alGore = () => {
+    store.dispatch(newMessageAction(`He's super...`, 'Al Gore'));
+    setTimeout(()=>{
+        store.dispatch(newMessageAction(`CEREAL`, 'Al Gore'));
+    },2000)
+}
+let cartmanArr = ['OMG Mintberry...', 'what', 'even', 'are you', 'dude?'];
+const phraseWait = (i) => {
+    let wait = i * 900;
+    
+    setTimeout(() => {
+        store.dispatch(newMessageAction(cartmanArr[i], 'The Coon'));
+        if (i === cartmanArr.length - 1) {
+            setTimeout(()=>{
+                alGore();
+            },2000);
+        }
+    }, wait);
+}
+for (let i = 0; i < cartmanArr.length; i++) {
+    phraseWait(i);
 }
 
 document.forms.selectStatus.addEventListener('change', (e) => {
