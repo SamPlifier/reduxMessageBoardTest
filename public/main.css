@@ -1,16 +1,37 @@
 body {
     padding-top: 5em;
 }
+
 section, input, button {
     margin-bottom: 0.6em;
 }
+
 .superHeroes {
     width: 100%;
     margin: -70px 0 -60px 0;
 }
+
 .msgTime {
     color: #0000007a;
 }
+
 .msgAuthor {
     border-bottom: 1px solid grey;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+.control-panel, .tasks, .message-board {
+    height: 100vh;
+}
+
+.control-panel {
+    background: #f76d55;
+}
+
+.tasks {
+    background: aquamarine;
 }
