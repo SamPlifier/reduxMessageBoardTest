@@ -1,6 +1,6 @@
 # Live example at https://samplifier.github.io/reduxMessageBoardTest/public/
 
-Followed pluralsight course on flux and redux. ( https://www.pluralsight.com/courses/flux-redux-mastering ) Added some of my own code to increase functionality and practice without guidance.
+Followed pluralsight course on flux and redux. ( https://www.pluralsight.com/courses/flux-redux-mastering ) Added some of my own code to increase functionality and practice without guidance. Flux and Redux here are used as state managers without tying into React or other front-end libraries/frameworks.
 
 ### Structure
 The application consists of three interconnected sub-applications with different implementations of Flux and Redux.
@@ -12,7 +12,7 @@ A basic form powered by a standards-compliant Flux implementation.
 A more advanced form based on the TodoMVC format, implementing a Flux ReduceStore. This form has `undo` functionality.
 
 #### Message Board
-A basic messaging tool similar to those found in most productivity apps. This sub-application implements Redux and contains asynchronous events.
+A basic messaging tool similar to those found in most productivity apps. This sub-application implements Redux and contains asynchronous events. Check the console log to see the LogRocket middleware in action (https://github.com/LogRocket/redux-logger).
 
 ### Glossary
 #### Flux https://github.com/facebook/flux
