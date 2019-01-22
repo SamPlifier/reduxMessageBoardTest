@@ -35,3 +35,6 @@ section, input, button {
 .tasks {
     background: aquamarine;
 }
+#tasks a{
+    color: #373a3c;
+}

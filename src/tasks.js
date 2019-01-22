@@ -38,40 +38,48 @@ const initialState = {
     tasks: [{
         id: id(),
         content: `Adobe Experience Manager Authoring Fundamentals`,
-        complete: true
+        complete: true,
+        link: `https://app.pluralsight.com/library/courses/aem-authoring-fundamentals/table-of-contents`
     }, {
         id: id(),
         content: `Google Analytics Fundamentals`,
-        complete: true
+        complete: true,
+        link: `https://app.pluralsight.com/library/courses/google-analytics/table-of-contents`
     }, {
         id: id(),
         content: `Node.js: Getting Started`,
-        complete: true
+        complete: true,
+        link: `https://app.pluralsight.com/library/courses/nodejs-getting-started/table-of-contents`
     }, {
         id: id(),
         content: `Advanced Node.js`,
-        complete: true
+        complete: true,
+        link: `https://app.pluralsight.com/library/courses/nodejs-advanced/table-of-contents`
     }, {
         id: id(),
         content: `React.js: Getting Started`,
-        complete: true
+        complete: true,
+        link: `https://app.pluralsight.com/library/courses/react-js-getting-started/table-of-contents`
     }, {
         id: id(),
         content: `Building Apps with React and Flux`,
-        complete: true
+        complete: true,
+        link: `https://app.pluralsight.com/library/courses/react-flux-building-applications/table-of-contents`
     }, {
         id: id(),
         content: `Mastering Flux and Redux`,
-        complete: true
+        complete: true,
+        link: `https://app.pluralsight.com/library/courses/flux-redux-mastering/table-of-contents`
     }, {
         id: id(),
         content: `Angular: Getting Started`,
-        complete: true
+        complete: true,
+        link: `https://app.pluralsight.com/library/courses/angular-2-getting-started-update/table-of-contents`
     }, {
         id: id(),
         content: `HTML5 Fundamentals`,
         complete: true,
-        link: ``
+        link: `https://app.pluralsight.com/library/courses/html5-fundamentals/table-of-contents`
     }, {
         id: id(),
         content: `D3.js Data Visualization Fundamentals`,
@@ -153,10 +161,11 @@ const render = () => {
     const TaskComponent = ({
         content,
         complete,
-        id
+        id,
+        link
     }) => (
         `<section>
-            <a href=${link}>
+            <a href=${link} alt=${link}>
         ${content} <input type="checkbox" name="taskCompleteCheck" data-taskid=${id} ${complete ? "checked" : ""}>
             </a>
     </section>`

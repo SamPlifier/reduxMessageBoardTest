@@ -8605,20 +8605,79 @@
 	var initialState = {
 	    tasks: [{
 	        id: (0, _shortid.generate)(),
-	        content: "Update CSS styles",
-	        complete: false
+	        content: 'Adobe Experience Manager Authoring Fundamentals',
+	        complete: true,
+	        link: 'https://app.pluralsight.com/library/courses/aem-authoring-fundamentals/table-of-contents'
 	    }, {
 	        id: (0, _shortid.generate)(),
-	        content: "Add unit tests",
-	        complete: false
+	        content: 'Google Analytics Fundamentals',
+	        complete: true,
+	        link: 'https://app.pluralsight.com/library/courses/google-analytics/table-of-contents'
 	    }, {
 	        id: (0, _shortid.generate)(),
-	        content: "Post to social media",
-	        complete: false
+	        content: 'Node.js: Getting Started',
+	        complete: true,
+	        link: 'https://app.pluralsight.com/library/courses/nodejs-getting-started/table-of-contents'
 	    }, {
 	        id: (0, _shortid.generate)(),
-	        content: "Install hard drive",
-	        complete: true
+	        content: 'Advanced Node.js',
+	        complete: true,
+	        link: 'https://app.pluralsight.com/library/courses/nodejs-advanced/table-of-contents'
+	    }, {
+	        id: (0, _shortid.generate)(),
+	        content: 'React.js: Getting Started',
+	        complete: true,
+	        link: 'https://app.pluralsight.com/library/courses/react-js-getting-started/table-of-contents'
+	    }, {
+	        id: (0, _shortid.generate)(),
+	        content: 'Building Apps with React and Flux',
+	        complete: true,
+	        link: 'https://app.pluralsight.com/library/courses/react-flux-building-applications/table-of-contents'
+	    }, {
+	        id: (0, _shortid.generate)(),
+	        content: 'Mastering Flux and Redux',
+	        complete: true,
+	        link: 'https://app.pluralsight.com/library/courses/flux-redux-mastering/table-of-contents'
+	    }, {
+	        id: (0, _shortid.generate)(),
+	        content: 'Angular: Getting Started',
+	        complete: true,
+	        link: 'https://app.pluralsight.com/library/courses/angular-2-getting-started-update/table-of-contents'
+	    }, {
+	        id: (0, _shortid.generate)(),
+	        content: 'HTML5 Fundamentals',
+	        complete: true,
+	        link: 'https://app.pluralsight.com/library/courses/html5-fundamentals/table-of-contents'
+	    }, {
+	        id: (0, _shortid.generate)(),
+	        content: 'D3.js Data Visualization Fundamentals',
+	        complete: false,
+	        link: 'https://app.pluralsight.com/library/courses/d3js-data-visualization-fundamentals/table-of-contents'
+	    }, {
+	        id: (0, _shortid.generate)(),
+	        content: 'Continue Rapid ES6 Training',
+	        complete: false,
+	        link: 'https://app.pluralsight.com/library/courses/rapid-es6-training/table-of-contents'
+	    }, {
+	        id: (0, _shortid.generate)(),
+	        content: 'Building Apps with React & Redux in ES6',
+	        complete: false,
+	        link: 'https://app.pluralsight.com/library/courses/react-redux-react-router-es6/table-of-contents'
+	    }, {
+	        id: (0, _shortid.generate)(),
+	        content: 'Typescript Fundamentals',
+	        complete: false,
+	        link: 'https://app.pluralsight.com/library/courses/typescript/table-of-contents'
+	    }, {
+	        id: (0, _shortid.generate)(),
+	        content: 'Angular Fundamentals',
+	        complete: false,
+	        link: 'https://app.pluralsight.com/library/courses/angular-fundamentals/table-of-contents'
+	    }, {
+	        id: (0, _shortid.generate)(),
+	        content: 'Building Web Apps with Node.js and Express 4.0',
+	        complete: false,
+	        link: 'https://app.pluralsight.com/library/courses/nodejs-express-web-applications-update/table-of-contents'
 	    }],
 	    showComplete: true
 	};
@@ -8644,7 +8703,9 @@
 	            console.log("Processing action", action.type);
 	            switch (action.type) {
 	                case CREATE_TASK:
-	                    newState = _extends({}, state, { tasks: [].concat(_toConsumableArray(state.tasks)) });
+	                    newState = _extends({}, state, {
+	                        tasks: [].concat(_toConsumableArray(state.tasks))
+	                    });
 	                    newState.tasks.push({
 	                        id: (0, _shortid.generate)(),
 	                        content: action.value,
@@ -8652,14 +8713,20 @@
 	                    });
 	                    return newState;
 	                case COMPLETE_TASK:
-	                    newState = _extends({}, state, { tasks: [].concat(_toConsumableArray(state.tasks)) });
+	                    newState = _extends({}, state, {
+	                        tasks: [].concat(_toConsumableArray(state.tasks))
+	                    });
 	                    var affectedElementIndex = newState.tasks.findIndex(function (t) {
 	                        return t.id === action.id;
 	                    });
-	                    newState.tasks[affectedElementIndex] = _extends({}, state.tasks[affectedElementIndex], { complete: action.value });
+	                    newState.tasks[affectedElementIndex] = _extends({}, state.tasks[affectedElementIndex], {
+	                        complete: action.value
+	                    });
 	                    return newState;
 	                case SHOW_TASKS:
-	                    newState = _extends({}, state, { showComplete: action.value });
+	                    newState = _extends({}, state, {
+	                        showComplete: action.value
+	                    });
 	                    return newState;
 	            }
 	            return state;
@@ -8681,8 +8748,9 @@
 	    var TaskComponent = function TaskComponent(_ref) {
 	        var content = _ref.content,
 	            complete = _ref.complete,
-	            id = _ref.id;
-	        return '<section>\n        ' + content + ' <input type="checkbox" name="taskCompleteCheck" data-taskid=' + id + ' ' + (complete ? "checked" : "") + '> \n    </section>';
+	            id = _ref.id,
+	            link = _ref.link;
+	        return '<section>\n            <a href=' + link + ' alt=' + link + '>\n        ' + content + ' <input type="checkbox" name="taskCompleteCheck" data-taskid=' + id + ' ' + (complete ? "checked" : "") + '>\n            </a>\n    </section>';
 	    };
 	
 	    var tasksSection = document.getElementById('tasks');
