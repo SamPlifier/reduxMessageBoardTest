@@ -87,7 +87,7 @@ const initialState = {
         link: `https://app.pluralsight.com/library/courses/d3js-data-visualization-fundamentals/table-of-contents`
     }, {
         id: id(),
-        content: `Continue Rapid ES6 Training`,
+        content: `Rapid ES6 Training`,
         complete: false,
         link: `https://app.pluralsight.com/library/courses/rapid-es6-training/table-of-contents`
     }, {
@@ -98,7 +98,7 @@ const initialState = {
     }, {
         id: id(),
         content: `Typescript Fundamentals`,
-        complete: false,
+        complete: true,
         link: `https://app.pluralsight.com/library/courses/typescript/table-of-contents`
     }, {
         id: id(),
